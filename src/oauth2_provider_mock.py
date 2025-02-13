@@ -19,11 +19,6 @@ class OAuth2ProviderMock():
             'app_config': {
                 'SERVER_NAME': f"host.docker.internal:{PORT}",
                 'SESSION_COOKIE_DOMAIN': f"host.docker.internal:{PORT}",
-                'OAUTH2_USERS': {
-                    'performance_user_1': None,
-                    'performance_user_2': None,
-                    'performance_user_3': None,
-                },
             },
             'host': '0.0.0.0',
             'port': PORT,
