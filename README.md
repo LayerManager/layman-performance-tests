@@ -1,6 +1,6 @@
 # Performance inspection
 
-> **WARNING**: This will destroy all Layman data and .env file.
+> **WARNING**: This may destroy .env file and will post a lot of layers.
 
 ## Usage
 Checkout into directory next to `layman` directory.

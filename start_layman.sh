@@ -4,7 +4,6 @@ set -exu
 
 pushd ../layman
 make stop-and-remove-all-docker-containers || true
-make reset-data-directories || true
 
 # start Layman with oauth2_provider_mock authentication
 cp .env.dev .env
