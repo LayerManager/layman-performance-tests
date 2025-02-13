@@ -43,6 +43,8 @@ def main():
         for username in USERS:
             print(f"Reserving username {username}")
             client.ensure_reserved_username(username=username, actor_name=username)
+            print(f"  Delete all user publications")
+            client.delete_workspace_publications(publication_type=LAYER_TYPE, workspace=username, actor_name=username)
 
         all_publications = []
 

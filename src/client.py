@@ -374,3 +374,23 @@ class RestClient:
             headers.update(get_authz_headers(actor_name))
         r_url = f"{self.base_url}/geoserver{ws_url_part}/wms"
         return wms_direct(r_url, headers=headers)
+
+    @staticmethod
+    def finish_delete(workspace, url, headers, skip_404=False, ):
+        response = requests.delete(url, headers=headers, timeout=HTTP_TIMEOUT)
+        status_codes_to_skip = {404} if skip_404 else set()
+        raise_layman_error(response, status_codes_to_skip)
+        return response.json()
+
+    def delete_workspace_publications(self, *, publication_type, workspace, headers=None, skip_404=False,
+                                      actor_name=None, ):
+        headers = headers or {}
+        if actor_name:
+            assert TOKEN_HEADER not in headers
+        if actor_name and actor_name != settings.ANONYM_USER:
+            headers.update(get_authz_headers(actor_name))
+
+        publication_type_def = PUBLICATION_TYPES_DEF[publication_type]
+
+        r_url = f"{self.base_url}/rest/workspaces/{workspace}/{publication_type_def.url_path_name}"
+        return self.finish_delete(workspace, r_url, headers, skip_404=skip_404)
