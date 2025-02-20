@@ -28,14 +28,14 @@ class WmsCapabilitiesRequest:
 
 
 def main():
-    n_cycles_per_user = 15
-    n_users = 4
+    n_cycles_per_user = 20
+    n_users = 3
     n_cycles = n_cycles_per_user*n_users
     csv_file_path = 'tmp/performance.csv'
 
     with ((OAuth2ProviderMock())):
 
-        client = RestClient("http://localhost:8000")
+        client = RestClient("http://localhost")
 
         for user_n in range(1, n_users + 1):
             username = f'{USERNAME_PREFIX}{user_n}'
